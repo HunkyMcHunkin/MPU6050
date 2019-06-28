@@ -74,7 +74,7 @@ void loop(){
   }
   
   //Skriver ut antall rotasjoner. Legger til et desimaltall som sier hvor langt gyroskopet er på "neste runde".
-  Serial.print("Antall rotasjoner: ");
+  Serial.print("Rotations: ");
   Serial.println(rotations+gyro_z_total/360);
   
   //Skriver ut vinkelen gyroskopet står i, i forhold til startsposisjonen, på vektorformat (tenk enhetssirkelen).
