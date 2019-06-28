@@ -54,12 +54,12 @@ void loop(){
   gz -= gyro_z_cal;
   
   //skriver ut verdiene til serial
-  Serial.print(" | GyX = "); Serial.print(gx/65.5);   //vi må dele på 65.5 for å få omgjort rådataen til grader
+  Serial.print(" | GyX = "); Serial.print(gx/65.5);   //vi må dele på 65.5 for å få omgjort rådataen til grader per sekund
   Serial.print(" | GyY = "); Serial.print(gy/65.5);   //se vedlagt video for bedre forklaring
   Serial.print(" | GyZ = "); Serial.println(gz/65.5);
 
   //finner totalt antall grader gyroskopet har beveget seg rundt Z 
-  gyro_z_total +=gz/(20*65.5);
+  gyro_z_total +=gz/(20*65.5);    //må deles på 20, i tillegg til 65.5, fordi det gjøres 20 målinger i sekundet
   
   //Legger til eller trekker fra 1 på "rotations" om gyroskopet har hatt en hel rotasjon. 
   //Fortegnet avgjøres av hvilken veg gyroskopet roterer. 
@@ -84,5 +84,6 @@ void loop(){
   Serial.print(sin(gyro_z_total));
   Serial.println("]");
   
-  delay(50);
+  //delay på 50ms, det fører til at koden i loop() kjøres 20 ganger i sekundet hvis man ser bort ifra andre forsinkelser (disse er neglesjerbare)
+  delay(50);   
 }
