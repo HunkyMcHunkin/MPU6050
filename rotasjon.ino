@@ -29,6 +29,7 @@ void setup(){
   Serial.begin(9600); 
 
   //kalibrering: gjennomsnittet av hundre målinger, dette gjennomsnittet skal trekkes fra hver måling i loop()
+  Serial.println("Calibrating...");
   for(int i = 0; i < 2000; i++){
     if(i%100==0)Serial.print('.');   //printer en "." for hver hundrede måling, skal bli 20 stk "." tilsammen
     accelgyro.getRotation(&gx, &gy, &gz);   
